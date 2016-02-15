@@ -14,7 +14,7 @@ loop:
   bx lr           @ return
 
   .incr:          @ otherwise, add the increment and continue
-  add r2, r2, r1  @ times = times + increment
+  add r2, r2, r1  @ accum = accum + increment
   sub r0, r0, #1  @ times--
   b .start
 
