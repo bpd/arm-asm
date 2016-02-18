@@ -6,7 +6,7 @@
 ;
 ;===============================================================================
 
-org 0x04001000           ; MPMC Chip Select 0, top 64MB of first bank of SDRAM
+org 0x00001000           ; MPMC Chip Select 0, top 64MB of first bank of SDRAM
                         ;    0x04000000
                         ; to 0x07FFFFFF          (originally set to 0x6001000)
                         
@@ -58,7 +58,12 @@ thumblabel:
 ; 
     
 mov r0, 0       ; framebuffer[r0] = r1
-mov r7, 60000
+
+; how many pixels to draw?
+; 640x480 resolution: 307,200 pixels (0x4B000)
+;  * 4 bytes per pixel:  1,228,800   (0x12C000)
+mov r7, 0xC000
+movt r7, 0x0012
 line:
 
   mov r1, 0x00ff
