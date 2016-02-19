@@ -59,6 +59,10 @@ thumblabel:
     
 mov r0, 0       ; framebuffer[r0] = r1
 
+; r1 = the pixel value
+mov r1, 0xFF00
+movt r1, 0x0000   ; pixel format: 0x00BBGGRR
+
 ; how many pixels to draw?
 ; 640x480 resolution: 307,200 pixels (0x4B000)
 ;  * 4 bytes per pixel:  1,228,800   (0x12C000)
@@ -66,9 +70,6 @@ mov r7, 0xC000
 movt r7, 0x0012
 line:
 
-  mov r1, 0x00ff
-  movt r1, 0x0000   ; pixel format: 0x00RRGGBB
-  
   str r1, [r2, r0]   ; r2=FB_ADDR
   
   add r0, r0, 4   ; each pixel is 4 bytes
